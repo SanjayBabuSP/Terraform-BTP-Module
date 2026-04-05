@@ -1,0 +1,5 @@
+global_account_subdomain = "2d8a43d6trial-ga"
+region                   = "ap21"
+subdomain_prefix         = "mycompany"
+admin_users              = ["sanjaybabusp@gmail.com"]
+developer_users          = ["sanjaybabusp@gmail.com", "sanjaybabu.professional@gmail.com"]

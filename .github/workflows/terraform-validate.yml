@@ -1,0 +1,46 @@
+name: Terraform BTP Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate Terraform HCL
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.6.6"
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+        working-directory: .
+
+      - name: Init dev environment
+        run: terraform init -backend=false
+        working-directory: environments/dev
+        env:
+          TF_VAR_global_account_subdomain: "placeholder"
+          TF_VAR_subdomain_prefix: "placeholder"
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: environments/dev
+
+      - name: tflint (module lint)
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: latest
+
+      - name: Run tflint
+        run: |
+          tflint --init
+          tflint --recursive

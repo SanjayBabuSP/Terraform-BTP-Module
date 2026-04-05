@@ -1,0 +1,15 @@
+# Terraform state — never commit state files
+*.tfstate
+*.tfstate.backup
+.terraform/
+*.tfvars
+!*.tfvars.example
+
+#credentials
+.env
+
+# Sensitive outputs
+*.tfplan.binary
+
+# OS
+.DS_Store
