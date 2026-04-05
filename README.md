@@ -13,18 +13,17 @@ security configuration, and entitlement management.
 
 ## Usage
 
-cd environments/dev
-cp terraform.tfvars.example terraform.tfvars # fill in your values
-terraform init
-terraform validate
-
-Set environment variables - create .env file using .env.example as reference
-
+- cd environments/dev
+- cp terraform.tfvars.example terraform.tfvars # fill in your values
+- terraform init
+- terraform validate
+- Set environment variables - create .env file using .env.example as reference
+```
 export BTP_USERNAME="your-btp-username"
 export BTP_PASSWORD="your-btp-password"
-
-source .env
-terraform plan
+```
+- source .env
+- terraform plan
 
 ## Plan output
 
